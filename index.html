@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Waist to Height Ratio Calculator – Check Your WHtR in Seconds</title>
+<meta name="description" content="Free waist to height ratio calculator. Enter your height and waist in cm or feet and inches to get your WHtR, your health band based on NICE guidance and the waist size that equals half your height.">
+<meta name="robots" content="index, follow">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Waist to Height Ratio Calculator – Check Your WHtR in Seconds">
+<meta property="og:description" content="Keep your waist to less than half your height. Check your ratio with this free WHtR calculator.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebApplication",
+      "name":"Waist to Height Ratio Calculator",
+      "applicationCategory":"HealthApplication",
+      "operatingSystem":"Browser",
+      "inLanguage":"en",
+      "description":"Calculate your waist-to-height ratio (WHtR) from height and waist in metric or imperial units, with health bands based on NICE guidance.",
+      "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"}
+    },
+    {
+      "@type":"FAQPage",
+      "mainEntity":[
+        {"@type":"Question","name":"What is a good waist to height ratio?","acceptedAnswer":{"@type":"Answer","text":"For most adults a waist-to-height ratio between 0.40 and 0.49 is associated with no increased health risk. The simple rule from NICE guidance is to keep your waist to less than half your height."}},
+        {"@type":"Question","name":"How do I calculate waist to height ratio?","acceptedAnswer":{"@type":"Answer","text":"Divide your waist measurement by your height, using the same unit for both. A waist of 80 cm and a height of 170 cm give 80 ÷ 170 = 0.47."}},
+        {"@type":"Question","name":"Is waist to height ratio better than BMI?","acceptedAnswer":{"@type":"Answer","text":"WHtR reflects fat stored around the middle, which BMI cannot show. That is why NICE recommends using it alongside BMI for adults with a BMI under 35. Neither measure is a diagnosis on its own."}},
+        {"@type":"Question","name":"Is the ratio different for men and women?","acceptedAnswer":{"@type":"Answer","text":"No. The same boundaries of 0.5 and 0.6 are used for adult men and women, which makes the ratio easy to remember."}},
+        {"@type":"Question","name":"Can children use the waist to height ratio?","acceptedAnswer":{"@type":"Answer","text":"Researchers often apply the 0.5 boundary from around age five, but results for children and teenagers should always be discussed with a paediatrician or GP rather than judged at home."}},
+        {"@type":"Question","name":"What does a ratio below 0.4 mean?","acceptedAnswer":{"@type":"Answer","text":"A ratio under 0.40 is not a NICE risk band, but it can go along with low body weight. If your result is in this range, it is worth checking your overall health with a doctor."}}
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+
+<header class="hd">
+  <div class="wrap hd-in">
+    <a href="#" class="lg" aria-label="WHtR Calculator home">
+      <span class="lg-ic" aria-hidden="true"><svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 3v18M7 7h10M8 12h8M7 17h10" stroke="#0b2540" stroke-width="2.4" stroke-linecap="round"/></svg></span>
+      <span class="lg-tx">WHtR<b>check</b></span>
+    </a>
+    <button class="burger" aria-label="Menu" onclick="document.querySelector('.nv').classList.toggle('open')"><span></span><span></span></button>
+    <nav class="nv">
+      <a href="#" class="on">Calculator</a>
+      <a href="#chart">WHtR Chart</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-head">
+    <span class="badge">Keep your waist to less than half your height</span>
+    <h1>Waist to Height Ratio Calculator</h1>
+    <p>Two measurements, one number. Your waist-to-height ratio (WHtR) shows how much of your weight sits around your middle – something BMI cannot tell you. Curious about your overall figure as well? Try the <a href="https://bodytypecalcs.com/">Body type calculator</a>.</p>
+  </div>
+
+  <div class="wrap app" id="calculator">
+    <!-- INPUT -->
+    <div class="panel-in">
+      <div class="unit-sw" role="group" aria-label="Units">
+        <button type="button" data-u="metric" class="on">Metric (cm)</button>
+        <button type="button" data-u="imperial">Imperial (ft / in)</button>
+      </div>
+
+      <div class="grp">
+        <label class="lbl" for="h-cm">Height</label>
+        <div class="metric-only row">
+          <div class="box"><input type="number" id="h-cm" value="170" min="50" max="250" step="0.5" inputmode="decimal"><span>cm</span></div>
+        </div>
+        <div class="imperial-only row two">
+          <div class="box"><input type="number" id="h-ft" value="5" min="2" max="8" step="1" aria-label="Height feet"><span>ft</span></div>
+          <div class="box"><input type="number" id="h-in" value="7" min="0" max="11.9" step="0.5" aria-label="Height inches"><span>in</span></div>
+        </div>
+        <input type="range" id="h-range" min="140" max="210" step="0.5" value="170" aria-label="Height slider">
+      </div>
+
+      <div class="grp">
+        <label class="lbl" for="w-val">Waist</label>
+        <div class="row">
+          <div class="box"><input type="number" id="w-val" value="80" min="30" max="200" step="0.5" inputmode="decimal"><span class="w-unit">cm</span></div>
+        </div>
+        <input type="range" id="w-range" min="50" max="150" step="0.5" value="80" aria-label="Waist slider">
+        <p class="help">Measure halfway between your lowest rib and the top of your hip bone, after breathing out normally.</p>
+      </div>
+
+      <p class="err" id="err" role="alert"></p>
+    </div>
+
+    <!-- RESULT -->
+    <div class="panel-out" aria-live="polite">
+      <div class="gauge">
+        <svg viewBox="0 -22 240 164" aria-hidden="true">
+          <path d="M20 120 A100 100 0 0 1 220 120" class="g-bg"/>
+          <path d="M20 120 A100 100 0 0 1 49.3 49.3" class="g-a"/>
+          <path d="M49.3 49.3 A100 100 0 0 1 120 20" class="g-b"/>
+          <path d="M120 20 A100 100 0 0 1 190.7 49.3" class="g-c"/>
+          <path d="M190.7 49.3 A100 100 0 0 1 220 120" class="g-d"/>
+          <text x="29" y="33" class="g-t" text-anchor="middle">0.4</text><text x="120" y="-8" class="g-t" text-anchor="middle">0.5</text><text x="211" y="33" class="g-t" text-anchor="middle">0.6</text>
+          <g id="needle" style="transform-origin:120px 120px"><line x1="120" y1="120" x2="120" y2="34" class="g-needle"/><circle cx="120" cy="120" r="8" class="g-hub"/></g>
+          <text x="20" y="138" class="g-t">0.3</text><text x="208" y="138" class="g-t">0.7</text>
+        </svg>
+        <div class="g-val"><b id="o-ratio">0.47</b><span id="o-band" class="band b-ok">No increased risk</span></div>
+      </div>
+      <p class="o-msg" id="o-msg"></p>
+      <div class="o-grid">
+        <div><span>Half your height</span><b id="o-half">85 cm</b></div>
+        <div><span>Your waist</span><b id="o-waist">80 cm</b></div>
+        <div><span>Distance to 0.5 line</span><b id="o-diff">5 cm below</b></div>
+        <div><span>Ratio as %</span><b id="o-pct">47 %</b></div>
+      </div>
+      <button class="cp" id="cp">Copy result</button>
+      <p class="disc">Bands follow NICE guidance for adults with a BMI under 35. This is a screening number, not a diagnosis.</p>
+    </div>
+  </div>
+</section>
+
+<main class="wrap">
+
+  <!-- WHAT -->
+  <section class="sec split">
+    <div>
+      <p class="ey">The basics</p>
+      <h2>What the waist to height ratio tells you</h2>
+      <p>WHtR compares the circumference of your waist with your height. Fat stored around the abdomen – especially deep around the organs – is linked more closely with type 2 diabetes, high blood pressure and heart disease than fat stored elsewhere. Because the ratio is scaled to your height, it works for tall and short people alike.</p>
+      <p>In 2022 the UK’s National Institute for Health and Care Excellence (NICE) added the ratio to its guidance and summed it up in one easy message: <b>keep your waist to less than half your height</b>.</p>
+    </div>
+    <div class="formula">
+      <span class="f-l">The formula</span>
+      <div class="f-main">WHtR = <i>waist</i> ÷ <i>height</i></div>
+      <div class="f-ex"><span>Example</span>80 cm ÷ 170 cm = <b>0.47</b></div>
+      <div class="f-ex"><span>Imperial</span>32 in ÷ 67 in = <b>0.48</b></div>
+    </div>
+  </section>
+
+  <!-- BANDS -->
+  <section class="sec">
+    <p class="ey">Results explained</p>
+    <h2>Waist to height ratio bands</h2>
+    <div class="bands">
+      <article class="bd-a"><b>Below 0.40</b><h3>Below the bands</h3><p>Not a NICE risk band, but may go along with low body weight. Worth a general health check with your doctor.</p></article>
+      <article class="bd-b"><b>0.40 – 0.49</b><h3>No increased risk</h3><p>Your waist is less than half your height – the range NICE describes as healthy.</p></article>
+      <article class="bd-c"><b>0.50 – 0.59</b><h3>Increased risk</h3><p>A raised level of central fat. Small, steady lifestyle changes can make a real difference here.</p></article>
+      <article class="bd-d"><b>0.60 and above</b><h3>High risk</h3><p>A higher health risk. Talking to a GP or healthcare professional is a good next step.</p></article>
+    </div>
+  </section>
+
+  <!-- CHART -->
+  <section class="sec" id="chart">
+    <p class="ey">Quick reference</p>
+    <h2>WHtR chart: waist size by height</h2>
+    <p class="lead">The table shows the waist measurement at which you would reach a ratio of 0.5 and 0.6 for common heights. Stay below the first column to remain in the “no increased risk” band.</p>
+    <div class="chart-grid">
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Height</th><th>WHtR 0.5</th><th>WHtR 0.6</th></tr></thead>
+          <tbody>
+            <tr><td>150 cm</td><td>75 cm</td><td>90 cm</td></tr>
+            <tr><td>160 cm</td><td>80 cm</td><td>96 cm</td></tr>
+            <tr><td>170 cm</td><td>85 cm</td><td>102 cm</td></tr>
+            <tr><td>180 cm</td><td>90 cm</td><td>108 cm</td></tr>
+            <tr><td>190 cm</td><td>95 cm</td><td>114 cm</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="tbl">
+        <table>
+          <thead><tr><th>Height</th><th>WHtR 0.5</th><th>WHtR 0.6</th></tr></thead>
+          <tbody>
+            <tr><td>5′0″</td><td>30 in</td><td>36 in</td></tr>
+            <tr><td>5′4″</td><td>32 in</td><td>38.4 in</td></tr>
+            <tr><td>5′8″</td><td>34 in</td><td>40.8 in</td></tr>
+            <tr><td>6′0″</td><td>36 in</td><td>43.2 in</td></tr>
+            <tr><td>6′4″</td><td>38 in</td><td>45.6 in</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <p class="note">Need different numbers, an imperial-first layout or extra notes on military standards? You can also <a href="https://bodytypecalcs.com/waist-to-height-ratio-calculator/">calculate your Waist to Height</a> on bodytypecalcs.com.</p>
+  </section>
+
+  <!-- STRING TEST + MEASURE -->
+  <section class="sec split rev">
+    <div class="string">
+      <svg viewBox="0 0 260 160" aria-hidden="true">
+        <rect x="10" y="60" width="240" height="10" rx="5" fill="#cfe6f7"/>
+        <rect x="10" y="60" width="120" height="10" rx="5" fill="#0284c7"/>
+        <circle cx="130" cy="65" r="9" fill="#facc15" stroke="#0b2540" stroke-width="2.5"/>
+        <text x="10" y="45" class="s-t">Your height as a piece of string</text>
+        <text x="10" y="100" class="s-t2">fold in half ↓</text>
+        <rect x="10" y="115" width="120" height="10" rx="5" fill="#0284c7"/>
+        <text x="140" y="125" class="s-t2">= your waist goal</text>
+      </svg>
+    </div>
+    <div>
+      <p class="ey">No calculator? No problem</p>
+      <h2>The string test – and how to measure</h2>
+      <p>Cut a piece of string to your height, fold it in half and wrap it around your waist. If the ends meet or overlap, your ratio is below 0.5. It is the simplest health check you can do at home.</p>
+      <ul class="steps">
+        <li><b>Find the spot.</b> Locate your lowest rib and the top of your hip bone – the waist sits halfway between them.</li>
+        <li><b>Stand relaxed.</b> Feet together, arms loose, and breathe out normally before reading the tape.</li>
+        <li><b>Keep it level.</b> The tape should be snug but not pressing into the skin, and parallel to the floor.</li>
+        <li><b>Measure height barefoot.</b> Stand against a wall and mark the top of your head with a flat object.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- COMPARE -->
+  <section class="sec">
+    <p class="ey">Comparison</p>
+    <h2>WHtR vs BMI vs waist-to-hip ratio</h2>
+    <div class="tbl wide">
+      <table>
+        <thead><tr><th></th><th>Waist-to-height</th><th>BMI</th><th>Waist-to-hip</th></tr></thead>
+        <tbody>
+          <tr><td>What it uses</td><td>Waist, height</td><td>Weight, height</td><td>Waist, hips</td></tr>
+          <tr><td>Shows belly fat</td><td class="y">Yes</td><td class="n">No</td><td class="y">Yes</td></tr>
+          <tr><td>Same boundary for all adults</td><td class="y">Yes (0.5)</td><td class="y">Mostly</td><td class="n">No – differs by sex</td></tr>
+          <tr><td>Needs a scale</td><td class="y">No</td><td class="n">Yes</td><td class="y">No</td></tr>
+          <tr><td>Easy to remember</td><td class="y">“Half your height”</td><td>Look-up table</td><td>Two thresholds</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="sec">
+    <p class="ey">FAQ</p>
+    <h2>Waist to height ratio – your questions</h2>
+    <div class="faq">
+      <details open><summary>What is a good waist to height ratio?</summary><p>For most adults a waist-to-height ratio between 0.40 and 0.49 is associated with no increased health risk. The simple rule from NICE guidance is to keep your waist to less than half your height.</p></details>
+      <details><summary>How do I calculate waist to height ratio?</summary><p>Divide your waist measurement by your height, using the same unit for both. A waist of 80 cm and a height of 170 cm give 80 ÷ 170 = 0.47.</p></details>
+      <details><summary>Is waist to height ratio better than BMI?</summary><p>WHtR reflects fat stored around the middle, which BMI cannot show. That is why NICE recommends using it alongside BMI for adults with a BMI under 35. Neither measure is a diagnosis on its own.</p></details>
+      <details><summary>Is the ratio different for men and women?</summary><p>No. The same boundaries of 0.5 and 0.6 are used for adult men and women, which makes the ratio easy to remember.</p></details>
+      <details><summary>Can children use the waist to height ratio?</summary><p>Researchers often apply the 0.5 boundary from around age five, but results for children and teenagers should always be discussed with a paediatrician or GP rather than judged at home.</p></details>
+      <details><summary>What does a ratio below 0.4 mean?</summary><p>A ratio under 0.40 is not a NICE risk band, but it can go along with low body weight. If your result is in this range, it is worth checking your overall health with a doctor.</p></details>
+    </div>
+  </section>
+</main>
+
+<footer class="ft" id="contact">
+  <div class="wrap ft-in">
+    <div>
+      <span class="lg-tx light">WHtR<b>check</b></span>
+      <p>A free waist to height ratio calculator – private, simple and based on current guidance.</p>
+    </div>
+    <nav>
+      <a href="#calculator">Calculator</a>
+      <a href="#chart">WHtR Chart</a>
+      <a href="#">Contact</a>
+      <a href="#">Privacy</a>
+      <a href="#">Imprint</a>
+    </nav>
+  </div>
+  <p class="wrap ft-copy">© <span id="yr"></span> WHtRcheck · For general information only. Always speak to a healthcare professional about your health.</p>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function(){
+  var $=function(id){return document.getElementById(id);};
+  var unit='metric', txt='';
+
+  function heightCm(){
+    if(unit==='metric') return parseFloat($('h-cm').value);
+    var ft=parseFloat($('h-ft').value)||0, inch=parseFloat($('h-in').value)||0;
+    return (ft*12+inch)*2.54;
+  }
+  function waistCm(){ var v=parseFloat($('w-val').value); return unit==='metric'?v:v*2.54; }
+  function show(cm){ return unit==='metric'?(Math.round(cm*10)/10)+' cm':(Math.round(cm/2.54*10)/10)+' in'; }
+
+  function calc(){
+    var h=heightCm(), w=waistCm();
+    if(!(h>50) || !(w>20)){ $('err').textContent='Please enter a valid height and waist.'; return; }
+    $('err').textContent='';
+    var r=w/h, rr=Math.round(r*100)/100;
+    $('o-ratio').textContent=rr.toFixed(2);
+    var band, cls, msg;
+    if(r<0.40){ band='Below the bands'; cls='b-low'; msg='Your ratio is under 0.40. This is not a NICE risk band, but it can go along with low body weight – a general check-up with your doctor is a good idea.'; }
+    else if(r<0.50){ band='No increased risk'; cls='b-ok'; msg='Your waist is less than half your height. This is the range NICE guidance describes as no increased health risk.'; }
+    else if(r<0.60){ band='Increased risk'; cls='b-mid'; msg='Your waist is half your height or more. NICE links this range with increased health risk from central fat.'; }
+    else { band='High risk'; cls='b-high'; msg='Your ratio is 0.60 or higher, which NICE links with high health risk. Consider talking to a GP or healthcare professional.'; }
+    $('o-band').textContent=band; $('o-band').className='band '+cls;
+    $('o-msg').textContent=msg;
+    var half=h/2, diff=w-half;
+    $('o-half').textContent=show(half);
+    $('o-waist').textContent=show(w);
+    $('o-diff').textContent=Math.abs(diff)<0.05?'on the line':show(Math.abs(diff))+(diff<0?' below':' above');
+    $('o-pct').textContent=Math.round(r*100)+' %';
+    var clamped=Math.max(0.3,Math.min(0.7,r));
+    var deg=(clamped-0.5)/0.2*90;
+    $('needle').style.transform='rotate('+deg+'deg)';
+    txt='My waist-to-height ratio: '+rr.toFixed(2)+' ('+band+')';
+  }
+
+  function syncRangesFromInputs(){
+    var h=heightCm(), w=parseFloat($('w-val').value);
+    if(h>0) $('h-range').value=unit==='metric'?h:Math.round(h/2.54*2)/2;
+    if(w>0) $('w-range').value=w;
+  }
+  function setRanges(){
+    if(unit==='metric'){ $('h-range').min=140; $('h-range').max=210; $('w-range').min=50; $('w-range').max=150; }
+    else { $('h-range').min=55; $('h-range').max=83; $('w-range').min=20; $('w-range').max=60; }
+  }
+
+  document.querySelectorAll('.unit-sw button').forEach(function(b){
+    b.addEventListener('click',function(){
+      if(b.dataset.u===unit) return;
+      var h=heightCm(), w=waistCm();
+      unit=b.dataset.u;
+      document.querySelectorAll('.unit-sw button').forEach(function(x){x.classList.toggle('on',x===b);});
+      document.body.classList.toggle('imp',unit==='imperial');
+      if(unit==='metric'){ $('h-cm').value=Math.round(h*2)/2; $('w-val').value=Math.round(w*2)/2; }
+      else { var ti=h/2.54, ft=Math.floor(ti/12), inch=Math.round((ti-ft*12)*2)/2; if(inch>=12){ft++;inch=0;} $('h-ft').value=ft; $('h-in').value=inch; $('w-val').value=Math.round(w/2.54*2)/2; }
+      document.querySelectorAll('.w-unit').forEach(function(s){s.textContent=unit==='metric'?'cm':'in';});
+      setRanges(); syncRangesFromInputs(); calc();
+    });
+  });
+  ['h-cm','h-ft','h-in','w-val'].forEach(function(id){ $(id).addEventListener('input',function(){ syncRangesFromInputs(); calc(); }); });
+  $('h-range').addEventListener('input',function(){
+    var v=parseFloat(this.value);
+    if(unit==='metric') $('h-cm').value=v;
+    else { var ft=Math.floor(v/12); $('h-ft').value=ft; $('h-in').value=Math.round((v-ft*12)*2)/2; }
+    calc();
+  });
+  $('w-range').addEventListener('input',function(){ $('w-val').value=this.value; calc(); });
+  $('cp').addEventListener('click',function(){
+    var done=function(){ var e=$('toast'); e.textContent='Result copied'; e.classList.add('show'); setTimeout(function(){e.classList.remove('show');},1800); };
+    if(navigator.clipboard&&window.isSecureContext){ navigator.clipboard.writeText(txt).then(done); return; }
+    var a=document.createElement('textarea'); a.value=txt; document.body.appendChild(a); a.select(); try{document.execCommand('copy');done();}catch(e){} a.remove();
+  });
+  document.querySelectorAll('.nv a').forEach(function(a){a.addEventListener('click',function(){document.querySelector('.nv').classList.remove('open');});});
+  $('yr').textContent=new Date().getFullYear();
+  calc();
+})();
+</script>
+</body>
+</html>
